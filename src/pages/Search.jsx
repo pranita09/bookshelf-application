@@ -8,12 +8,13 @@ export const Search = () => {
   const { state, dispatch, searchedBooks } = useBooks();
   return (
     <div className="search">
-      <div className="back-btn" onClick={() => navigate("/")}>
+      <div className="back-btn" onClick={() => navigate("/")} title="Go back">
         <MdOutlineKeyboardBackspace />
       </div>
-      <h1>Search</h1>
+      <h2>Search</h2>
       <input
         type="text"
+        placeholder="Search here..."
         value={state.searchInput}
         onChange={(e) =>
           dispatch({ type: "SEARCH_INPUT", payload: e.target.value })
