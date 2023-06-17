@@ -11,7 +11,7 @@ export const Search = () => {
       <div className="back-btn" onClick={() => navigate("/")} title="Go back">
         <MdOutlineKeyboardBackspace />
       </div>
-      <h2>Search</h2>
+      <h2>Search a Book</h2>
       <input
         type="text"
         placeholder="Search here..."

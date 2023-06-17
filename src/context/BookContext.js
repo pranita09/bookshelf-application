@@ -121,8 +121,27 @@ export const BookProvider = ({ children }) => {
         book.title.toLowerCase().includes(state.searchInput.toLowerCase())
       )
     : state.books;
+
+  const presentInCurrentlyRead = (book) =>
+    state.currentlyReading.find((item) => item._id === book._id);
+
+  const presentInWantToRead = (book) =>
+    state.wantToRead.find((item) => item._id === book._id);
+
+  const presentInRead = (book) =>
+    state.read.find((item) => item._id === book._id);
+
   return (
-    <BookContext.Provider value={{ state, dispatch, searchedBooks }}>
+    <BookContext.Provider
+      value={{
+        state,
+        dispatch,
+        searchedBooks,
+        presentInCurrentlyRead,
+        presentInRead,
+        presentInWantToRead,
+      }}
+    >
       {children}
     </BookContext.Provider>
   );
