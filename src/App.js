@@ -1,9 +1,15 @@
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Search } from "./pages/Search";
 
 function App() {
   return (
     <div className="App">
-      <h1>Bookshelf application</h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
+      </Routes>
     </div>
   );
 }
