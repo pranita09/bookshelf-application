@@ -65,6 +65,7 @@ const initialState = {
         "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1396229073l/1774836.jpg",
     },
   ],
+  searchInput: "",
 };
 
 const reducerFunc = (state, { type, payload }) => {
@@ -103,6 +104,11 @@ const reducerFunc = (state, { type, payload }) => {
         wantToRead: state.wantToRead.filter((book) => book._id !== payload._id),
         read: state.read.filter((book) => book._id !== payload._id),
       };
+    case "SEARCH_INPUT":
+      return {
+        ...state,
+        searchInput: payload,
+      };
     default:
       return state;
   }
@@ -110,8 +116,13 @@ const reducerFunc = (state, { type, payload }) => {
 
 export const BookProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducerFunc, initialState);
+  const searchedBooks = state.searchInput
+    ? state.books.filter((book) =>
+        book.title.toLowerCase().includes(state.searchInput.toLowerCase())
+      )
+    : state.books;
   return (
-    <BookContext.Provider value={{ state, dispatch }}>
+    <BookContext.Provider value={{ state, dispatch, searchedBooks }}>
       {children}
     </BookContext.Provider>
   );
